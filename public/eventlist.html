@@ -1,0 +1,18 @@
+<div ng-controller="EventlistCtrl">
+    <h1>Events</h1>
+    <hr/>
+    <hr/>
+    <ul class="thumbnails">
+        <li ng-repeat="event in events|orderBy:sortorder" class="span5">
+            <a href="#/event/{{event._id}}">
+                <div class="well hoverwell">
+                    <div class="row">
+                        <h2 class="span6">{{event.text}}</h2>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+
+    <a href="#/">back</a>
+</div>
