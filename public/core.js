@@ -21,7 +21,7 @@ scotchTodo.config(['$routeProvider',function($routeProvider) {
 	});	
 }]);
 
-function mainController($scope, $http) {
+function mainController($scope, $http, $q, $timeout) {
 	$scope.formData = {};
 
 	// when landing on the page, get all todos and show them
@@ -58,5 +58,32 @@ function mainController($scope, $http) {
 				console.log('Error: ' + data);
 			});
 	};
+
+	//promise ================================
+	$scope.loadData = function () {
+		loadUser()
+			.then(userStaff)
+			.then(function(result){
+				alert(result);
+			});
+	}
+
+	function loadUser () {
+		var deferred = $q.defer();
+		$timeout(function(){
+			deferred.resolve('Blah!');
+		}, 5000);
+		return deferred.promise;
+	}
+
+	function userStaff (user) {
+		var deferred = $q.defer();
+		$timeout(function(){
+			deferred.resolve('Blah2!');
+		}, 5000);
+		return deferred.promise;
+	}
+
+	//promise all together================================
 
 }
