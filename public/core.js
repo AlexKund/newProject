@@ -1,12 +1,29 @@
 var scotchTodo = angular.module('scotchTodo', ['ngRoute','ngResource']);
 
-scotchTodo.config(['$routeProvider',function($routeProvider) {
+scotchTodo.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 	$routeProvider.when('/', {
 		templateUrl: 'main.html',
 		controller: 'mainController'
 	}).when('/eventlist', {
 		templateUrl: 'eventlist.html',
-		controller: 'EventlistCtrl'
+		controller: 'EventlistCtrl',
+		resolve: {
+            delayedData: function($q, $timeout,eventlistService) {
+                 
+                // Set up a promise to return
+                var deferred = $q.defer();
+                    
+                // Simulate an external request, this could be an $http.get() in a real app
+                $timeout(function() {
+                     
+                    var myData = eventlistService.getAllEvents();
+                     
+                    deferred.resolve(myData);
+                }, 5000);
+                        
+                return deferred.promise;
+            }
+        }
 	}).when('/event/:eventId', {
 		templateUrl: 'event.html',
 		controller: 'EventCtrl',
@@ -14,14 +31,18 @@ scotchTodo.config(['$routeProvider',function($routeProvider) {
             event: function($q, $route, eventlistService) {
                 var deferred = $q.defer();
                 eventlistService.getEvent($route.current.pathParams.eventId)
-                    .then(function(event) { deferred.resolve(event); });
+                    .then(function(event) { 
+                    	deferred.resolve(event); 
+                    });
                 return deferred.promise;
             }
         }
-	});	
+	})
+	.otherwise({ redirectTo: '/' });	
+	// $locationProvider.html5Mode(true);
 }]);
 
-function mainController($scope, $http, $q, $timeout) {
+function mainController($scope, $http, $q, $timeout,$route) {
 	$scope.formData = {};
 
 	// when landing on the page, get all todos and show them
@@ -85,5 +106,12 @@ function mainController($scope, $http, $q, $timeout) {
 	}
 
 	//promise all together================================
+		//???
+
+	//params==============================================
+	$scope.reload = function () {
+		console.log($route.current.params);
+		$route.reload(); //reload page to it default state
+	}
 
 }
