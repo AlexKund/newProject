@@ -1,6 +1,6 @@
 'use strict';
 
-scotchTodo.factory('eventlistService', ['$resource', '$q', '$timeout',function ($resource, $q, $timeout) {	
+scotchTodo.factory('eventlistService', ['$resource', '$q', '$timeout', '$http', function ($resource, $q, $timeout,$http) {	
 	var resource = $resource('/api/todos/:id', {id: '@id'});
 
 	return {
@@ -19,6 +19,16 @@ scotchTodo.factory('eventlistService', ['$resource', '$q', '$timeout',function (
 		},
 		getAllEvents: function () {
 			return resource.query();
-		}
+		},
+       getBooks: function() {
+            var deferred = $q.defer();
+            resource.query({}, function (response) {
+              var someData = response;
+               $timeout(function(){
+                        return deferred.resolve(someData);
+                    }, 10000);
+            });
+        return deferred.promise;
+    }
 	};
 }]);

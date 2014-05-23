@@ -3,7 +3,14 @@ var scotchTodo = angular.module('scotchTodo', ['ngRoute','ngResource']);
 scotchTodo.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 	$routeProvider.when('/', {
 		templateUrl: 'main.html',
-		controller: 'mainController'
+		controller: 'mainController',
+        resolve: {
+        	books: function(eventlistService,$q) {
+        		
+				   return eventlistService.getBooks();
+				   
+			}
+        }
 	}).when('/eventlist', {
 		templateUrl: 'eventlist.html',
 		controller: 'EventlistCtrl',
@@ -42,7 +49,7 @@ scotchTodo.config(['$routeProvider', '$locationProvider', function($routeProvide
 	// $locationProvider.html5Mode(true);
 }]);
 
-function mainController($scope, $http, $q, $timeout,$route) {
+function mainController($scope, $http, $q, $timeout,$route,eventlistService,books,$location) {
 	$scope.formData = {};
 
 	// when landing on the page, get all todos and show them
@@ -114,4 +121,9 @@ function mainController($scope, $http, $q, $timeout,$route) {
 		$route.reload(); //reload page to it default state
 	}
 
+	$scope.resolveTest = function () {
+		alert(books.data)
+	}
+
+	console.log($location.url())
 }
