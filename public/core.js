@@ -122,8 +122,12 @@ function mainController($scope, $http, $q, $timeout,$route,eventlistService,book
 	}
 
 	$scope.resolveTest = function () {
-		alert(books.data)
+
+		eventlistService.getBooks().then(function(data){
+			console.log(data); //working resolte
+		});
 	}
 
+	console.log(books[1].text)
 	console.log($location.url())
 }

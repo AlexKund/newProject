@@ -26,7 +26,8 @@ scotchTodo.factory('eventlistService', ['$resource', '$q', '$timeout', '$http', 
               var someData = response;
                $timeout(function(){
                         return deferred.resolve(someData);
-                    }, 10000);
+                        $rootScope.$apply();
+                    }, 3000);
             });
         return deferred.promise;
     }
