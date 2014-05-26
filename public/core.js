@@ -126,8 +126,26 @@ function mainController($scope, $http, $q, $timeout,$route,eventlistService,book
 		eventlistService.getBooks().then(function(data){
 			console.log(data); //working resolte
 		});
+		// sessionStorage.
 	}
 
 	console.log(books[1].text)
-	console.log($location.url())
+	console.log($location.url());
+
+//broadcast reseive
+	$scope.$on('scanner-started', function(event, args) {
+
+	    var anyThing = args.any;
+	    // do what you want to do
+	    console.log(anyThing);
+	});
 }
+
+//broadcast send
+scotchTodo.controller('HeaderCtrl', ['$scope', '$rootScope', 'sessionStorage', function ($scope,$rootScope,sessionStorage) {
+	$scope.broadcastBtwCtrls = function (event) {
+		event.preventDefault();
+		// sessionStorage.SaveState();  //session save
+		$rootScope.$broadcast('scanner-started',{ any: {arg1: 'adsgfdafgsdgf'} });
+	}
+}]);

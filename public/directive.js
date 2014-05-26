@@ -86,3 +86,40 @@ scotchTodo.directive('singleResult', ['$log', function($log){
 	};
 }]);
 
+scotchTodo.directive('upVoteCounter', ['$log', 'sessionStorage', '$rootScope', function($log, sessionStorage, $rootScope){
+	// Runs during compile
+	return {
+		// name: '',
+		// priority: 1,
+		// terminal: true,
+		// scope: {}, // {} = isolate, true = child, false/undefined = no change
+		// controller: function($scope, $element, $attrs, $transclude) {},
+		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+		restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+		// template: '',
+		templateUrl: '/directives/up-vote.html',
+		replace: true,
+		// transclude: true,
+		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+		link: function($scope, iElm, iAttrs, controller) {
+			$scope.user = {};
+			var upvote = 0;
+
+			$scope.userUpVoteFn = function(user, event) {
+				event.preventDefault();
+				++upvote;
+				sessionStorage.SaveState(upvote); 
+				++sessionStorage.RestoreState().number
+				$scope.user.upVote = sessionStorage.RestoreState().number;
+				$rootScope.$broadcast('restorestate');
+			}
+
+			$scope.user.upVote = upvote;
+			$scope.userDownVoteFn = function(user, event) {
+				event.preventDefault();
+
+				$scope.user.upVote--;
+			}
+		}
+	};
+}]);

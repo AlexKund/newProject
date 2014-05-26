@@ -33,3 +33,28 @@ scotchTodo.factory('eventlistService', ['$resource', '$q', '$timeout', '$http', 
     }
 	};
 }]);
+
+//======================================================session storage
+scotchTodo.factory('sessionStorage', ['$rootScope',function ($rootScope) {
+    
+ var service = {
+
+        // model: {
+        //     name: 'Alex',
+        //     email: 'alex@alex.com'
+        // },
+
+        SaveState: function (data) {
+            sessionStorage.userService = angular.toJson({number:data});
+        },
+
+        RestoreState: function (data) {
+            return angular.fromJson(sessionStorage.userService);
+        }
+    }
+
+    $rootScope.$on("savestate", service.SaveState);
+    $rootScope.$on("restorestate", service.RestoreState);
+
+    return service;
+}])
