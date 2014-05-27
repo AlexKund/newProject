@@ -49,7 +49,7 @@ scotchTodo.factory('sessionStorage', ['$rootScope',function ($rootScope) {
         },
 
         RestoreState: function (data) {
-            return angular.fromJson(sessionStorage.userService);
+            return angular.fromJson(sessionStorage.userService).number || 0;
         }
     }
 
