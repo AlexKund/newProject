@@ -33,8 +33,15 @@
 <body>
 	<header ng-controller="HeaderCtrl">
 		<a href="#" ng-click="broadcastBtwCtrls($event)">broadcast between controllers</a>
+		<hr />
+		<mydirective data-place-holder="Choose an employee.." data-get-opts="getEmployees()" data-get-selected="getSelected()">
+		</mydirective>
+		
+		<hr />
+		<h3>Handling events with directive</h3>
+		<input type="text" required placeholder="format (mm/dd/yy)" date-keys class="form-control input-lg text-center" />
+		<hr />
 	</header>
 	<div ng-view></div>
-
 </body>
 </html>
