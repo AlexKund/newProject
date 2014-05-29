@@ -20,7 +20,7 @@ scotchTodo.factory('eventlistService', ['$resource', '$q', '$timeout', '$http', 
 		getAllEvents: function () {
 			return resource.query();
 		},
-       getBooks: function() {
+        getBooks: function() {
             var deferred = $q.defer();
             resource.query({}, function (response) {
               var someData = response;

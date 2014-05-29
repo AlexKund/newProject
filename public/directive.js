@@ -127,3 +127,77 @@ scotchTodo.directive('upvote', ['$log', 'sessionStorage', '$rootScope', function
 		}
 	};
 }]);
+
+scotchTodo.directive('mydirective', ['$log', function($log){
+	// Runs during compile
+	return {
+		// name: '',
+		// priority: 1,
+		// terminal: true,
+		scope: {
+			getSelected: '&',
+   			getOpts: '&'
+		}, // {} = isolate, true = child, false/undefined = no change
+		// controller: function($scope, $element, $attrs, $transclude) {},
+		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+		restrict: 'E', // E = Element, A = Attribute, C = Class, M = Comment
+		// template: '',
+		templateUrl: '/directives/outer-directive-fn.html',
+		// replace: true,
+		// transclude: true,
+		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+		link: function($scope, iElm, iAttrs, controller) {
+			console.log( $scope.getOpts() );
+		}
+	};
+}]);
+
+scotchTodo.directive('dateKeys', ['$log', function($log){
+	// Runs during compile
+	return {
+		// name: '',
+		// priority: 1,
+		// terminal: true,
+		// scope: {}, // {} = isolate, true = child, false/undefined = no change
+		// controller: function($scope, $element, $attrs, $transclude) {},
+		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+		// restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+		// template: '',
+		// templateUrl: '',
+		// replace: true,
+		// transclude: true,
+		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+		link: function($scope, iElm, iAttrs, controller) {
+			 iElm.on('keydown', function(event) {
+               if (isNumericKeyCode(event.keyCode) || isForwardSlashKeyCode(event.keyCode) || isNavigationKeycode(event.keyCode)) {
+                   return true;
+               }
+               return false;
+            });
+		}
+	};
+
+	function isNumericKeyCode(keyCode) {
+        return (keyCode >= 48 && keyCode <= 57)
+            || (keyCode >= 96 && keyCode <= 105);
+    }
+    function isForwardSlashKeyCode(keyCode) {
+        return keyCode === 191;
+    }
+    function isNavigationKeycode(keyCode) {
+        switch (keyCode) {
+            case 8: //backspace
+            case 35: //end
+            case 36: //home
+            case 37: //left
+            case 38: //up
+            case 39: //right
+            case 40: //down
+            case 45: //ins
+            case 46: //del
+                return true;
+            default:
+                return false;
+        }
+    }
+}]);

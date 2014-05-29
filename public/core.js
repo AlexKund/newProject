@@ -59,7 +59,7 @@ function mainController($scope, $http, $q, $timeout,$route,eventlistService,book
 	$http.get('/api/todos')
 		.success(function(data) {
 			$scope.todos = data;
-			console.log(data);
+			console.log('ia kaji',data);
 		})
 		.error(function(data) {
 			console.log('Error: ' + data);
@@ -71,7 +71,7 @@ function mainController($scope, $http, $q, $timeout,$route,eventlistService,book
 			.success(function(data) {
 				$scope.formData = {}; // clear the form so our user is ready to enter another
 				$scope.todos = data;
-				console.log(data);
+				console.log('o6te vednuj ahoi',data);
 			})
 			.error(function(data) {
 				console.log('Error: ' + data);
@@ -152,5 +152,13 @@ scotchTodo.controller('HeaderCtrl', ['$scope', '$rootScope', 'sessionStorage', f
 		event.preventDefault();
 		// sessionStorage.SaveState();  //session save
 		$rootScope.$broadcast('scanner-started',{ any: {arg1: 'adsgfdafgsdgf'} });
+	}
+
+	$scope.getEmployees = function(){
+	    return {2: 'Jane', 3: 'Bob', 4: 'Smith'};
+	}
+
+	$scope.getSelected = function() {
+	    return 3;
 	}
 }]);
