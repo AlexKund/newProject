@@ -105,6 +105,7 @@ scotchTodo.directive('upvote', ['$log', 'sessionStorage', '$rootScope', function
 		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
 		link: function($scope, iElm, iAttrs, controller) {
 			$scope.user = {};
+
 			var upvote = sessionStorage.RestoreState();
 
 			$scope.user.upVote = upvote;
