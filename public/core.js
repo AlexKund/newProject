@@ -51,7 +51,10 @@ scotchTodo.config(['$routeProvider', '$locationProvider', function($routeProvide
 
 function mainController($scope, $http, $q, $timeout,$route,eventlistService,books,$location) {
 	$scope.formData = {};
-
+	$scope.changeouter = function (event) {
+		event.preventDefault();
+		$scope.upvotecounter = 'Hussa!';
+	}
 	// when landing on the page, get all todos and show them
 	$http.get('/api/todos')
 		.success(function(data) {
@@ -139,6 +142,8 @@ function mainController($scope, $http, $q, $timeout,$route,eventlistService,book
 	    // do what you want to do
 	    console.log(anyThing);
 	});
+
+	$scope.upvotecounter = 'get outer of directive function';
 }
 
 //broadcast send

@@ -39,17 +39,14 @@ scotchTodo.factory('sessionStorage', ['$rootScope',function ($rootScope) {
     
  var service = {
 
-        // model: {
-        //     name: 'Alex',
-        //     email: 'alex@alex.com'
-        // },
-
         SaveState: function (data) {
             sessionStorage.userService = angular.toJson({number:data});
         },
 
         RestoreState: function (data) {
-            return angular.fromJson(sessionStorage.userService);
+            if (!sessionStorage.userService) 
+                return 0;
+            return angular.fromJson(sessionStorage.userService).number || 0;
         }
     }
 
