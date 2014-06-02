@@ -51,10 +51,10 @@ scotchTodo.config(['$routeProvider', '$locationProvider', function($routeProvide
 
 function mainController($scope, $http, $q, $timeout,$route,eventlistService,books,$location) {
 	$scope.formData = {};
-	$scope.changeouter = function (event) {
-		event.preventDefault();
-		$scope.upvotecounter = 'Hussa!';
-	}
+
+	$scope.upvoteSession = function(status) {
+	    return $scope.status = "Yea";
+	};
 	// when landing on the page, get all todos and show them
 	$http.get('/api/todos')
 		.success(function(data) {

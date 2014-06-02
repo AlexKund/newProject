@@ -1,5 +1,4 @@
 <div class="container">
-
 	<!-- HEADER AND TODO COUNT -->
 	<div class="jumbotron text-center">
 		<h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
@@ -45,5 +44,10 @@
 		{{testRes}}
 	</div>
 	{{upvotecounter}}
-	<upvote upvote="changeouter($event)" />
+	<upvote />
+	<outerfn  upvote="upvoteSession(status)"/>
+	
+	<!-- using observe -->
+	<input type="text" ng-model="user.emailAdres">
+	<gravatar email="{{user.emailAdres}}" />	
 </div>

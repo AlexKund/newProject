@@ -93,7 +93,6 @@ scotchTodo.directive('upvote', ['$log', 'sessionStorage', '$rootScope', function
 		// priority: 1,
 		// terminal: true,
 		scope: {
-			upvote: "&"
 		}, // {} = isolate, true = child, false/undefined = no change
 		// controller: function($scope, $element, $attrs, $transclude) {},
 		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
@@ -201,4 +200,44 @@ scotchTodo.directive('dateKeys', ['$log', function($log){
                 return false;
         }
     }
+}]);
+
+scotchTodo.directive('outerfn', ['$log',function ($log) {
+	return {
+		//priority: 0,
+		template: '<div>{{upvote(status)}}</div>',
+		//templateUrl: 'directive.html',
+		replace: true, 
+		//transclude: true,
+		restrict: 'E',
+		scope: {
+			upvote: '&'
+		},
+		//controller: function($scope, $element, $attrs, $transclude, otherInjectables) {
+
+		//},
+		//compile: function compile(tElement, tAttrs, transclude) {
+			//return function postLink(scope, iElement, iAttrs, controller) {
+
+			//}
+		//},
+		link: function postLink(scope, iElement, iAttrs) {
+		}
+	};
+}]);
+
+scotchTodo.directive('gravatar',['$log', function($log){
+	return {
+		restrict: 'E',
+		template: '<img />',
+		replace: true,
+		link: function (scope, element, attrs, controller) {
+			attrs.$observe('email', function(newVal, oldVal){
+				if (newVal != oldVal) {
+					console.log(newVal)
+					attrs.$set('src', newVal);
+				};
+			});
+		}
+	}
 }]);
