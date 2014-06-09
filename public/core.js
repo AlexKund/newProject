@@ -44,8 +44,11 @@ scotchTodo.config(['$routeProvider', '$locationProvider', function($routeProvide
                 return deferred.promise;
             }
         }
+	}).when('/lesson5', {
+		templateUrl: 'lesson5.html',
+		controller: 'Lesson5Ctrl'
 	})
-	.otherwise({ redirectTo: '/' });	
+	// .otherwise({ redirectTo: '/' });	
 	// $locationProvider.html5Mode(true);
 }]);
 
