@@ -44,14 +44,19 @@
 		{{testRes}}
 	</div>
 	{{upvotecounter}}
+<<<<<<< HEAD
 	<upvote />
 	<outerfn  upvote="upvoteSession(status)"/>
 	
 	<!-- using observe -->
 	<input type="text" ng-model="user.emailAdres">
 	<gravatar email="{{user.emailAdres}}" />	
-
+||||||| merged common ancestors
+	<upvote upvote="changeouter($event)" />
+=======
+	<upvote upvote="changeouter($event)" />
 
 	<!-- controller in directive -->
 	<ctr-in-directive />
+>>>>>>> 7e3abbcfeffc02765d81a0fd64cbeedf08400d07
 </div>
