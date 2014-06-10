@@ -5,7 +5,6 @@ var express = require('express'),
  	logger = require('morgan'),
  	bodyParser = require('body-parser');
 
-
 // configuration =================
 mongoose.connect('mongodb://localhost:27017/userlist');
 
