@@ -1,12 +1,8 @@
 'use strict';
 
-describe('KarmaCtrl', function() {
-  beforeEach(module('scotchTodo.controller'));
+describe('Controller: mainController', function () {
 
-
-  describe('version', function() {
-    it('should return current version', inject(function(version) {
-      expect(version).toEqual('0.1');
-    }));
+  it('should attach a list of awesomeThings to the scope', function () {
+    expect(true).toBe(false);
   });
 });

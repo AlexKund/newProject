@@ -59,6 +59,7 @@ scotchTodo.config(['$routeProvider', '$locationProvider', function($routeProvide
 }]);
 
 function mainController($scope, $http, $q, $timeout,$route,eventlistService,books,$location) {
+	$scope.awesomeThings = [1,2,3];
 	$scope.formData = {};
 
 	$scope.upvoteSession = function(status) {
