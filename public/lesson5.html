@@ -1,0 +1,28 @@
+<div>
+	<h1>Using transclude</h1>
+	<hello title="Blah!">
+	</hello>
+	{{inertoouter}}
+	<div ng-controller="InnerCtrl">
+		<input type="text" ng-model="$parent.inertoouter" />
+	</div>
+	<div ng-click="visible=!visible">click</div>
+	<div ng-show="visible">fghjfghjgf</div>
+	<h1>Compile</h1>
+	<input type="text" ng-model="text" />
+	<div hello-my-friend="5" text="{{text}}">{{text}}</div>
+
+	<div date-picker></div>
+
+	<h2>focus directive</h2>
+	<form name="userForm" ng-submit="submitFormFn()" novalidate>
+		<legend>Form title</legend>
+	
+		<div class="form-group">
+			<label for="">label</label>
+			<input type="text" class="form-control" id=""  placeholder="Input field" required>
+			 <input type="text" name="name" class="form-control" ng-model="user.name" required focus-and-keypress />
+		</div>
+		<input type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid" value="Submit" />
+	</form>	
+</div>
