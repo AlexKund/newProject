@@ -44,6 +44,9 @@ scotchTodo.config(['$routeProvider', '$locationProvider', function($routeProvide
                 return deferred.promise;
             }
         }
+	}).when('/newtasks', {
+		templateUrl: 'newtasks.html',
+		controller: 'NewtasksCtrl'
 	}).when('/lesson5', {
 		templateUrl: 'lesson5.html',
 		controller: 'Lesson5Ctrl'
