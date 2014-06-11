@@ -1,19 +1,12 @@
 'use strict';
 
-describe('EventlistCtrl', function(){
-	var scope, $controllerConstructor;
+describe('KarmaCtrl', function() {
+  beforeEach(module('scotchTodo.controller'));
 
-	beforeEach(module("scotchTodo"));
 
-	beforeEach(inject(function($controller, $rootScope){
-		scope = $rootScope.$new();
-		$controllerConstructor = $controller;
-	}));
-
-	it('trqbva da pokaje servisite za tozi kontroler', function(){
-		var mockEvents = {};
-		var ctrl = $controllerConstructor('EventlistCtrl',
-			{$scope:scope,$location:{},$delayedData:{}});
-		expect(scope.events).toBe(mockEvents);
-	});
+  describe('version', function() {
+    it('should return current version', inject(function(version) {
+      expect(version).toEqual('0.1');
+    }));
+  });
 });

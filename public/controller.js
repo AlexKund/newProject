@@ -2,7 +2,7 @@ scotchTodo.controller('EventlistCtrl', ['$scope', 'eventlistService', '$routePar
 	$scope.events = delayedData;  //delayed data
 	console.log(delayedData);
 }]);
-
+ 
 scotchTodo.controller('EventCtrl', ['$scope', 'eventlistService', '$route', '$routeParams',function ($scope, eventlistService, $route, $routeParams) {
 	$scope.sortorder = 'name';
     $scope.event = $route.current.locals.event;

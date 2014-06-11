@@ -50,8 +50,11 @@ scotchTodo.config(['$routeProvider', '$locationProvider', function($routeProvide
 	}).when('/lesson5', {
 		templateUrl: 'lesson5.html',
 		controller: 'Lesson5Ctrl'
+	}).when('/karma', {
+		templateUrl: 'karma.html',
+		controller: 'KarmaCtrl'
 	})
-	// .otherwise({ redirectTo: '/' });	
+	.otherwise({ redirectTo: '/' });	
 	// $locationProvider.html5Mode(true);
 }]);
 
